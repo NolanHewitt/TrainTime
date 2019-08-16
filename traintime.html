@@ -25,8 +25,8 @@
         
         <br>
         
-        <table id="traintable" class="table" action="" style="width: 800px; margin: auto">
-            <thead> 
+              <table id="traintable" class="table" action="" style="width: 800px; margin: auto">
+              <thead> 
                 <tr>
                     <th scoop ="col">Train Name</th>
                     <th scoop ="col">Destination</th>
@@ -34,8 +34,8 @@
                     <th scoop ="col">Next Arrival</th>
                     <th scoop ="col">Minutes Away</th>
                 </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
                 <tr>
                     <td>Train n</td>
                     <td>dest</td>
@@ -52,10 +52,10 @@
                     <td></td>
                     </tr> 
                   </tbody>
-        </table>
+                </table>
         <br>
 
-        <form id="myForm" action="/action_page.php">
+        <form id="myForm" style="margin-left: 40%;  width: 800px;">
 
             Train Name: <input id = "tname" type="text" name="fname" value="New Train"><br>
             Destination: <input id = "dest" type="text" name="lname" value="Place"><br>
@@ -63,7 +63,7 @@
             First Train Time: <input id = "first" type="text" name="fname" value="3:30"><br>
           </form>
 
-          <button onclick="myFunction()">Try it</button>
+          <button style="margin-left: 40%" onclick="myFunction()">Try it</button>
 
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery.js"></script>
@@ -130,6 +130,10 @@ newCell4.appendChild(newText);
 
 var newText  = document.createTextNode(tMinutesTillTrain);
 newCell5.appendChild(newText);
+
+//LocalForage
+
+
 }
 
 </script>
