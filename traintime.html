@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+   
+    <title>Train Times!</title>
+  </head>
+  <body>
+​
+    <div class="container"></div>
+    <div class="jumbotron bg-dark text-white">
+
+            <h1 class="text-center">
+                    <strong>TRAIN TIMES</strong>
+            </h1>
+
+    </div>
+        
+        <hr action="" style="width: 800px; margin: auto">
+        
+        <br>
+        
+        <table id="traintable" class="table" action="" style="width: 800px; margin: auto">
+            <thead> 
+                <tr>
+                    <th scoop ="col">Train Name</th>
+                    <th scoop ="col">Destination</th>
+                    <th scoop ="col">Frequency (min)</th>
+                    <th scoop ="col">Next Arrival</th>
+                    <th scoop ="col">Minutes Away</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Train n</td>
+                    <td>dest</td>
+                    <td>frequ</td>
+                    <td>next Arrival</td>
+                    <td>minutes away</td>
+                </tr>
+                <tr>
+                    <td>Capital Line</td>
+                    <td>Washington D.C.</td>
+                    <td>12 mins</td>
+                    <td>6 mins</td>
+                    <td>3</td>
+                    <td></td>
+                    </tr> 
+                  </tbody>
+        </table>
+        <br>
+
+        <form id="myForm" action="/action_page.php">
+
+            Train Name: <input id = "tname" type="text" name="fname" value="New Train"><br>
+            Destination: <input id = "dest" type="text" name="lname" value="Place"><br>
+            Frequency (mins): <input id = "freq" type="text" name="fname" value="12"><br>
+            First Train Time: <input id = "first" type="text" name="fname" value="3:30"><br>
+          </form>
+
+          <button onclick="myFunction()">Try it</button>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- Link to Moment.js should go here -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js" integrity="sha256-H/ZsHjKSJUnQyCQHZwPmn7VTWFeTTI+qgCP1GkiB9zI=" crossorigin="anonymous"></script>
+
+        <script>
+
+function myFunction() {
+  //holds the time of the first train from form input  
+  var trainname = document.getElementById("tname").value;
+  //holds the destination title from the form input
+  var destination = document.getElementById("dest").value;
+  //holds the frequency time of the train in mins
+  var frequency = document.getElementById("freq").value;
+  // Time is what is inputed
+  var firstTime = document.getElementById("first").value;
+  // First Time (pushed back 1 year to make sure it comes before current time)
+  var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+  // Current Time
+  var currentTime = moment();
+  // Difference between the times
+  var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+  // Time apart (remainder)
+  var tRemainder = diffTime % frequency;
+  // Minute Until Train
+  var tMinutesTillTrain = frequency - tRemainder;
+  // Next Train
+  var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+
+    console.log(trainname);
+    console.log(destination);
+    console.log(frequency);
+    console.log(moment(nextTrain).format("hh:mm"));
+    console.log(tMinutesTillTrain);
+
+var tableRef = document.getElementById('traintable').getElementsByTagName('tbody')[0];
+
+// Insert a row in the table at the last row
+var newRow   = tableRef.insertRow();
+
+// Insert a cell in the row at index 0
+var newCell1  = newRow.insertCell(0);
+var newCell2  = newRow.insertCell(1);
+var newCell3  = newRow.insertCell(2);
+var newCell4  = newRow.insertCell(3);
+var newCell5  = newRow.insertCell(4);
+
+// Append a text node to the cell
+var newText  = document.createTextNode(trainname);
+newCell1.appendChild(newText);
+
+var newText  = document.createTextNode(destination);
+newCell2.appendChild(newText);
+
+var newText  = document.createTextNode(frequency);
+newCell3.appendChild(newText);
+
+var newText  = document.createTextNode(moment(nextTrain).format("hh:mm"));
+newCell4.appendChild(newText);
+
+var newText  = document.createTextNode(tMinutesTillTrain);
+newCell5.appendChild(newText);
+}
+
+</script>
+   
+    </body>
+</html>
