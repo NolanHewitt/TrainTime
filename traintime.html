@@ -56,7 +56,8 @@
   <!-- Link to Moment.js should go here -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js" integrity="sha256-H/ZsHjKSJUnQyCQHZwPmn7VTWFeTTI+qgCP1GkiB9zI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js"
+  integrity="sha256-H/ZsHjKSJUnQyCQHZwPmn7VTWFeTTI+qgCP1GkiB9zI=" crossorigin="anonymous"></script>
 
         <script>
 
@@ -117,8 +118,22 @@ var newText  = document.createTextNode(tMinutesTillTrain);
 newCell5.appendChild(newText);
 
 //LocalForage
-
-
+let data = {
+       trainname: trainname,
+       destination: destination,
+       firstTime: firstTime,
+       frequency: frequency,
+   }
+   console.log(data);
+   localforage.getItem("saved").then(function(result){
+     if(!result){
+       result = [];
+       result.push(data);
+     }
+     localforage.setItem("saved", result).then(function(){
+         console.log("saved")
+         console.log(result);
+        })}); 
 }
 
 </script>
